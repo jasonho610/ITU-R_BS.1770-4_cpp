@@ -19,6 +19,82 @@
 >![fig.1](https://i.imgur.com/QEUuVah.jpg)
 >![](https://i.imgur.com/ch3QtTR.png)
 
+```python=
+def peak(data, target):
+    """ Peak normalize a signal.
+    
+    Normalize an input signal to a user specifed peak amplitude.   
+    Params
+    -------
+    data : ndarray
+        Input multichannel audio data.
+    target : float
+        Desired peak amplitude in dB.
+    Returns
+    -------
+    output : ndarray
+        Peak normalized output data.
+    """
+    # find the amplitude of the largest peak
+    current_peak = np.max(np.abs(data))
+
+    # calculate the gain needed to scale to the desired peak level
+    gain = np.power(10.0, target/20.0) / current_peak
+    output = gain * data
+    
+    # check for potentially clipped samples
+    if np.max(np.abs(output)) >= 1.0:
+        warnings.warn("Possible clipped samples in output.")
+
+    return output
+    
+def loudness(data, input_loudness, target_loudness):
+    """ Loudness normalize a signal.
+    
+    Normalize an input signal to a user loudness in dB LKFS.   
+    Params
+    -------
+    data : ndarray
+        Input multichannel audio data.
+    input_loudness : float
+        Loudness of the input in dB LUFS. 
+    target_loudness : float
+        Target loudness of the output in dB LUFS.
+        
+    Returns
+    -------
+    output : ndarray
+        Loudness normalized output data.
+    """    
+    # calculate the gain needed to scale to the desired loudness level
+    delta_loudness = target_loudness - input_loudness
+    gain = np.power(10.0, delta_loudness/20.0)
+
+    output = gain * data
+
+    # check for potentially clipped samples
+    if np.max(np.abs(output)) >= 1.0:
+        warnings.warn("Possible clipped samples in output.")
+
+    return output
+```
+```python=
+import soundfile as sf
+import pyloudnorm as pyln
+
+data, rate = sf.read("test.wav") # load audio
+
+# peak normalize audio to -1 dB
+peak_normalized_audio = pyln.normalize.peak(data, -1.0)
+
+# measure the loudness first 
+meter = pyln.Meter(rate) # create BS.1770 meter
+loudness = meter.integrated_loudness(data)
+
+# loudness normalize audio to -12 dB LUFS
+loudness_normalized_audio = pyln.normalize.loudness(data, loudness, -12.0)
+```
+
 - LKFS and LUFS relate to the same thing. Most of the world talks about LUFS, so we will too: but the US broadcast industry, particularly, likes to use LKFS.
 
 - [Peak / Loudness Normalization](https://amvidia.com/guides/audio-conversion/peak-and-loudness-ebu-r128-normalization)
@@ -66,7 +142,6 @@
 ![](https://i.imgur.com/ckfvm7t.png)
 ![](https://i.imgur.com/07iRq0c.png =500x)![](https://i.imgur.com/3gBWPIh.png =500x)
 
-### Formulea
 
 | Symbol | Definition |
 | :---: | :--- |
@@ -105,12 +180,16 @@ $$
 $$
 
 ## Questions
-- In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
-- Live stream adjustment?
-- [Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
+In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
 
-## Original Hackmd :
-https://hackmd.io/@jasonho610/HJa8jjVVu</center>
+In LKFS by Python-Overview, "...each channel is weighted where surround channels have larger weights and the LFE channel is ignored" ?
+> The low-frequency effects (LFE) channel is an audio track for deep, low-pitched sounds of 3–120 Hz.
+
+Live stream adjustment?
+
+[Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
+
+[C/C++ pointer](http://hackgrass.blogspot.com/2018/03/c-pointerint-foo-int-bar.html)
 
 ## Minute a Meeting
 ### < 2021/03/24 >
@@ -126,15 +205,15 @@ https://hackmd.io/@jasonho610/HJa8jjVVu</center>
 - Why offset -0.691?
 
 ### < 2020/04/30 > 
-- ~~Dependency~~
-- ~~makefile~~
+- cmake
+- autoconf+automake
+- makefile
 
 ### < 2020/05/14 > 
-- ~~Datatype conversion (double 0.0)~~
+- Datatype conversion (double 0.0)
 - ~~Normalize~~
-- ~~argc, argv, -i/-o~~
-- ~~Github~~
-- Mel Scale
+- argc, argv, -i/-o
+- Github
 
 ## Code note
 
