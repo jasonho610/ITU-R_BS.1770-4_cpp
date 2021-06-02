@@ -66,6 +66,7 @@
 ![](https://i.imgur.com/ckfvm7t.png)
 ![](https://i.imgur.com/07iRq0c.png =500x)![](https://i.imgur.com/3gBWPIh.png =500x)
 
+### Formulea
 
 | Symbol | Definition |
 | :---: | :--- |
@@ -106,14 +107,12 @@ $$
 ## Questions
 In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
 
-In LKFS by Python-Overview, "...each channel is weighted where surround channels have larger weights and the LFE channel is ignored" ?
-> The low-frequency effects (LFE) channel is an audio track for deep, low-pitched sounds of 3–120 Hz.
-
 Live stream adjustment?
 
 [Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
 
-[C/C++ pointer](http://hackgrass.blogspot.com/2018/03/c-pointerint-foo-int-bar.html)
+## Original Hackmd :
+https://hackmd.io/@jasonho610/HJa8jjVVu</center>
 
 ## Minute a Meeting
 ### < 2021/03/24 >
@@ -129,15 +128,14 @@ Live stream adjustment?
 - Why offset -0.691?
 
 ### < 2020/04/30 > 
-- cmake
-- autoconf+automake
-- makefile
+- ~~Dependency~~
+- ~~makefile~~
 
 ### < 2020/05/14 > 
-- Datatype conversion (double 0.0)
+- ~~Datatype conversion (double 0.0)~~
 - ~~Normalize~~
-- argc, argv, -i/-o
-- Github
+- ~~argc, argv, -i/-o~~
+- ~~Github~~
 
 ## Code note
 
