@@ -105,11 +105,9 @@ $$
 $$
 
 ## Questions
-In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
-
-Live stream adjustment?
-
-[Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
+- In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
+- Live stream adjustment?
+- [Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
 
 ## Original Hackmd :
 https://hackmd.io/@jasonho610/HJa8jjVVu</center>
