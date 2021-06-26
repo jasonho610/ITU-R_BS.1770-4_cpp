@@ -43,11 +43,15 @@ To delete produced file :
 ```
 $ make clean_all
 ```
-To delete produced wav :
+To delete k-filtered wav :
 ```
-$ make clean_wav
+$ make clean_kfilt_wav
 ```
-Test function by sample wav:
+To delete normalized k-filtered wav :
+```
+$ make clean_norm_wav
+```
+Test functions by sample wav:
 ```
 $ make test_LKFS
 ```
