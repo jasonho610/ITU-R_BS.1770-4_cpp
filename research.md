@@ -134,6 +134,7 @@ https://hackmd.io/@jasonho610/HJa8jjVVu</center>
 - ~~Normalize~~
 - ~~argc, argv, -i/-o~~
 - ~~Github~~
+- Mel Scale
 
 ## Code note
 
