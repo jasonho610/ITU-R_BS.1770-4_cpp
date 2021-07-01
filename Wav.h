@@ -83,9 +83,24 @@ typedef struct Stereo_Wav {
     // Empty Constructor
     Stereo_Wav() {}
     // Implicit Constructor by Waveheader
-    Stereo_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS):header(2, SR, BPS, NoS) {}
+    Stereo_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS):header(2, SR, BPS, NoS) {
+        for(size_t i=0;i<NoS;i++) {
+            left_data.push_back(0);
+            right_data.push_back(0);
+        }
+    }
     // Explicit Constructor
-    Stereo_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS, vector<double> ld, vector<double> rd):header(2, SR, BPS, NoS), left_data(ld), right_data(rd) {}
+    Stereo_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS, vector<double> ld, vector<double> rd):header(2, SR, BPS, NoS), left_data(ld), right_data(rd) {
+        if(left_data.size()!=right_data.size()) {
+            cout << "Warning: audio left_data and audio right_data are not the same size." << endl;
+        }
+        if(NoS!=left_data.size()) {
+            cout << "Warning: Number of samples and audio left_data size are not the same." << endl;
+        }
+        if(NoS!=right_data.size()) {
+            cout << "Warning: Number of samples and audio right_data size are not the same." << endl;
+        }
+    }
     
     /*===================Destructor===================*/
     //~Stereo_Wav() { cout << "Stereo_Wav killed" << endl; }
@@ -174,9 +189,17 @@ typedef struct Mono_Wav {
     // Empty Constructor
     Mono_Wav() {}
     // Implicit Constructor by Waveheader
-    Mono_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS):header(1, SR, BPS, NoS) {}
+    Mono_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS):header(1, SR, BPS, NoS) {
+        for(size_t i=0;i<NoS;i++) {
+            data.push_back(0);
+        }
+    }
     // Explicit Constructor
-    Mono_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS, vector<double> d):header(1, SR, BPS, NoS), data(d) {}
+    Mono_Wav(unsigned const SR, unsigned short const BPS, unsigned NoS, vector<double> d):header(1, SR, BPS, NoS), data(d) {
+        if(NoS!=data.size()) {
+            cout << "Warning: Number of samples and audio data size are not the same." << endl;
+        }
+    }
     
     /*===================Clear===================*/
     void clear() {

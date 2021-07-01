@@ -59,30 +59,17 @@ bool normalize(string method, string infname, double target);
 
 int main(int argc, const char* argv[]) {
     /*------DEBUG SECTION------*/
-    /*vector<string> infname;
-    infname.push_back("test_wav/Stereo/Chet Baker - But Not For Me.wav");
-    infname.push_back("test_wav/Stereo/Dizzy Gillespie - Chega de Saudade (Tom Jobim).wav");
+    /*
+    vector<string> infname;
     infname.push_back("test_wav/Stereo/Fkj - Ylang Ylang.wav");
-    infname.push_back("test_wav/Stereo/Jason - Beats(Stereo).wav");
-    infname.push_back("test_wav/Stereo/Keith Jarrett Trio - When You Wish Upon a Star.wav");
-    infname.push_back("test_wav/Stereo/SpongeBob - Closing Theme Song.wav");
-    infname.push_back("test_wav/Stereo/Tom Misch - I Wish.wav");
-    
-    infname.push_back("test_wav/Mono/Jason - Beats(Mono).wav");
-    infname.push_back("test_wav/Mono/Miles Davis - Freddie Freeloader(left).wav");
-    infname.push_back("test_wav/Mono/Miles Davis - Freddie Freeloader(right).wav");
-    infname.push_back("test_wav/Mono/Queen - I Want To Break Free(high octave).wav");
-    infname.push_back("test_wav/Mono/speech(16k).wav");
-    infname.push_back("test_wav/Mono/speech(20k).wav");
     infname.push_back("test_wav/Mono/speech(48k).wav");
     
     for(int i=0;i<infname.size();i++) {
         //compute_LKFS(infname[i]);              // TESTED, "speech(48k)" but has diff 0.018691892 with py
         //filter_audio(infname[i]);              // TESTED
-        //normalize("-p", infname[i], -24.0);    // TESTED
-        //normalize("-l", infname[i], -24.0);    // TESTED, "speech(48k)" but has diff 0.361737893 with py
+        normalize("-p", infname[i], -24.0);    // TESTED
+        normalize("-l", infname[i], -24.0);    // TESTED, "speech(48k)" but has diff 0.361737893 with py
     }
-    normalize("-l", infname[8], -24.0);
     return 0;*/
     /*------DEBUG SECTION END------*/
     
@@ -169,7 +156,7 @@ bool normalize(string method, string infname, double target = -24.0) {
     }
     
     if (NumCh==1) {
-        Mono_Wav wavein, waveout;
+        Mono_Wav wavein;
         string outfname;
         
         if (!wavein.readfile(infname)) {
@@ -177,6 +164,7 @@ bool normalize(string method, string infname, double target = -24.0) {
             return true;
         }
         
+        Mono_Wav waveout(wavein.header.get_SampleRate(), wavein.header.get_BitsPerSample(), wavein.data.size());
         infname.erase(infname.end()-4, infname.end());
         if (method=="-p") {
             peak_normalize(wavein, waveout, target);
@@ -192,13 +180,15 @@ bool normalize(string method, string infname, double target = -24.0) {
         waveout.writefile(outfname);
     }
     else if (NumCh==2) {
-        Stereo_Wav wavein, waveout;
+        Stereo_Wav wavein;
         string outfname;
         
         if (!wavein.readfile(infname)) {
             cout << "Please check your file path or file name." << endl;
             return true;
         }
+        
+        Stereo_Wav waveout(wavein.header.get_SampleRate(), wavein.header.get_BitsPerSample(), wavein.left_data.size());
         
         infname.erase(infname.end()-4, infname.end());
         if (method=="-p") {
@@ -211,7 +201,6 @@ bool normalize(string method, string infname, double target = -24.0) {
             loudness_normalize(wavein, waveout, loudness, target);
             outfname = infname + "_ld_normalized.wav";
         }
-        
         waveout.writefile(outfname);
     }
     else {

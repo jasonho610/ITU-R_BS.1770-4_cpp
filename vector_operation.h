@@ -73,11 +73,11 @@ double abs_max_element(const vector<double> &v) {
 template <typename T>
 void vect1D_print(const vector<T> &v) {
     cout << "{ ";
-    for(size_t i=0;i<v.size();i++) {
+    for(size_t i=0;i<v.size()-1;i++) {
         cout << setw(3) << v[i] << ", ";
         if((i%50)==49) cout << endl;
     }
-    cout << "} " << endl;
+    cout << setw(3) << v[v.size()] << " } " << endl;
 }
 
 #endif /* vector_operation_h */

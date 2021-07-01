@@ -16,17 +16,17 @@ clean_norm_wav:
 	rm test_wav/Mono/*normalized.wav test_wav/Stereo/*normalized.wav
 
 test_LKFS:
-	./BS1770 -l test_wav/Mono/speech\(48k\).wav
+	./BS1770 -l test_wav/Mono/speech-48k.wav
 	./BS1770 -l test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
 	
 test_Kfilter:
-	./BS1770 -k test_wav/Mono/speech\(48k\).wav 
+	./BS1770 -k test_wav/Mono/speech-48k.wav 
 	./BS1770 -k test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
 
 test_Peak_Normalize:
-	./BS1770 -n -p test_wav/Mono/speech\(48k\).wav 
-	./BS1770 -n -p test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
+	./BS1770 -n -p -3.0 test_wav/Mono/speech-48k.wav 
+	./BS1770 -n -p -3.0 test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
 
 test_Loudness_Normalize:
-	./BS1770 -n -l test_wav/Mono/speech\(48k\).wav 
-	./BS1770 -n -l test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
+	./BS1770 -n -l -30.0 test_wav/Mono/speech-48k.wav 
+	./BS1770 -n -l -24.0 test_wav/Stereo/Fkj\ -\ Ylang\ Ylang.wav
