@@ -62,13 +62,13 @@ int main(int argc, const char* argv[]) {
     /*
     vector<string> infname;
     infname.push_back("test_wav/Stereo/Fkj - Ylang Ylang.wav");
-    infname.push_back("test_wav/Mono/speech(48k).wav");
+    infname.push_back("test_wav/Mono/speech-48k.wav");
     
     for(int i=0;i<infname.size();i++) {
         //compute_LKFS(infname[i]);              // TESTED, "speech(48k)" but has diff 0.018691892 with py
         //filter_audio(infname[i]);              // TESTED
-        normalize("-p", infname[i], -24.0);    // TESTED
-        normalize("-l", infname[i], -24.0);    // TESTED, "speech(48k)" but has diff 0.361737893 with py
+        normalize("-p", infname[i], -3.0);    // TESTED
+        normalize("-l", infname[i], -30.0);    // TESTED, "speech(48k)" but has diff 0.361737893 with py
     }
     return 0;*/
     /*------DEBUG SECTION END------*/
