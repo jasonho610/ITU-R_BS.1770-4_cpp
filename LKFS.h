@@ -16,32 +16,32 @@
 #define pi 3.14159265358979323846
 using namespace std;
 
-void filter(const vector<double> &b, const vector<double> &a, const vector<double> &in, vector<double> &out) {
+void filter(const vector<double> &b, const vector<double> &a, const vector<double> &x, vector<double> &y) {
     
     /*==================================================================*/
     /*=== a[0]y[n]=\sig_{i=0}^{M}b_ix[n-i] - \sig_{j=1}^{N}a_jy[n-j] ===*/
     /*==================================================================*/
     
-    if (out.empty()) {
+    if (y.empty()) {
         cout << "Initialize the output vector, please." << endl;
-        for(size_t i=0;i<in.size();i++) out.push_back(0.0);
+        for(size_t i=0;i<x.size();i++) y.push_back(0.0);
     }
     
-    for(int i=0;i<in.size();i++) {
+    for(int i=0;i<x.size();i++) {
         double temp = 0.0;
         /*----------------compute sigma x[n]----------------*/
         for(int j=0;j<b.size();j++) {
             if(i - j < 0) continue;
-            temp += b[j] * in[i-j];
+            temp += b[j] * x[i-j];
         }
         
         /*----------------compute sigma y[n]----------------*/
         for(int j=1;j<a.size();j++) {
             if(i - j < 0) continue;
-            temp -= a[j]*out[i-j];
+            temp -= a[j]*y[i-j];
         }
         temp /= a[0];
-        out[i] = temp;
+        y[i] = temp;
     }
 }
 

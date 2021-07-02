@@ -74,7 +74,7 @@ int main(int argc, const char* argv[]) {
     /*------DEBUG SECTION END------*/
     
     if (argc==1) {
-        cout << "Acquire some arguments." << endl;
+        cout << "\033[31mAcquire some arguments.\033[0m" << endl;
         help_instruction();
         return 1;
     }
@@ -126,7 +126,7 @@ bool compute_LKFS(string infname) {
         
         double fs = wavein.header.get_SampleRate();
         loudness = integrated_loudness(wavein, fs);
-        cout << "Integrated loudness : " << setprecision(17) << loudness << endl;
+        cout << "\033[35mIntegrated loudness : " << setprecision(17) << loudness << ".\033[0m" << endl;
     }
     else if (NumCh==2) {
         Stereo_Wav wavein;
@@ -139,7 +139,7 @@ bool compute_LKFS(string infname) {
         
         double fs = wavein.header.get_SampleRate();
         loudness = integrated_loudness(wavein, fs);
-        cout << "Integrated loudness : " << setprecision(17) << loudness << endl;
+        cout << "\033[35mIntegrated loudness : " << setprecision(17) << loudness << ".\033[0m" << endl;
     }
     else {
         cout << "Only support \033[31mMono/Stereo, signed-16-bit, PCM\033[0m wav now." << endl;

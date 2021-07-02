@@ -174,7 +174,7 @@ typedef struct Stereo_Wav {
             outfile.write((char*)&right_s[i], sizeof(right_s[i]));
         }
         outfile.close();
-        cout << filename << " is wirtten successfully." << endl << endl;
+        cout << filename << " is wirtten successfully." << endl;
         
         return false;
     }
@@ -259,7 +259,7 @@ typedef struct Mono_Wav {
             outfile.write((char*)&data_s[i], sizeof(data_s[i]));
         }
         outfile.close();
-        cout << filename << " is wirtten successfully." << endl << endl;
+        cout << filename << " is wirtten successfully." << endl;
         
         return false;
     }

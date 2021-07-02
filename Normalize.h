@@ -30,11 +30,7 @@ void peak_normalize(Stereo_Wav &wavein, Stereo_Wav &waveout, double target) {
     
     double normalized_peak = max(abs_max_element(left), abs_max_element(right));
     cout << "normalized_peak : " << normalized_peak << endl;
-    /*
-    if(normalized_peak>=1.0) {
-        cout << "Possible clipped samples in output." << endl;
-    }*/
-        
+    
     waveout.left_data.clear(); waveout.left_data = left;
     waveout.right_data.clear(); waveout.right_data = right;
 }
@@ -50,11 +46,7 @@ void peak_normalize(Mono_Wav &wavein, Mono_Wav &waveout, double target) {
     //double normalized_peak = *max_element(data.begin(), data.end());
     double normalized_peak = abs_max_element(data);
     cout << "normalized_peak : " << normalized_peak << endl;
-    /*
-    if(normalized_peak>=1.0) {
-        cout << "Possible clipped samples in output." << endl;
-    }*/
-        
+     
     waveout.data.clear(); waveout.data = data;
 }
 
@@ -72,10 +64,6 @@ void loudness_normalize(Stereo_Wav &wavein, Stereo_Wav &waveout, double input_lo
     
     double normalized_peak = max(abs_max_element(left), abs_max_element(right));
     cout << "normalized_peak : " << normalized_peak << endl;
-    /*
-    if(normalized_peak>=1.0) {
-        cout << "Possible clipped samples in output." << endl;
-    }*/
     
     waveout.left_data.clear(); waveout.left_data = left;
     waveout.right_data.clear(); waveout.right_data = right;
@@ -90,10 +78,6 @@ void loudness_normalize(Mono_Wav &wavein, Mono_Wav &waveout, double input_loudne
     
     double normalized_peak = abs_max_element(data);
     cout << "normalized_peak : " << normalized_peak << endl;
-     /*
-    if(normalized_peak>=1.0) {
-        cout << "Possible clipped samples in output." << endl;
-    }*/
     
     waveout.data.clear(); waveout.data = data;
 }
