@@ -70,7 +70,7 @@ further help :
 $ ./BS1770 -h
 ```
 ## References
-The code mainly takes references from [pyloudnorm](https://github.com/csteinmetz1/pyloudnorm)<font size=1>[1]</font> and [loudness.py](https://github.com/BrechtDeMan/loudness.py)<font size=1>[2]</font>.
+The code has taken references from [pyloudnorm](https://github.com/csteinmetz1/pyloudnorm)<font size=1>[1]</font> and [loudness.py](https://github.com/BrechtDeMan/loudness.py)<font size=1>[2]</font>.
 
 <font size=1>[1]</font>Steinmetz, Christian J. and Reiss, Joshua D., "pyloudnorm : a simple yet flexible loudness meter in Python"
 
