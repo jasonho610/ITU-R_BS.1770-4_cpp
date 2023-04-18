@@ -1,5 +1,8 @@
 # Audio Normalization - LKFS
-<center> <font size=2> Jason [2021/03] </font> </center>
+<center> <font size=2> 
+    Jason [2021/03] <br>
+https://hackmd.io/@jasonho610/HJa8jjVVu
+    </font> </center>
 
 ## Source
 - [Audio Normalization 的二三事（上）](https://medium.com/kkstream/%E6%9C%89%E9%97%9Caudio-normalization%E5%85%A9%E4%B8%89%E4%BA%8B-dca62497e197)
@@ -107,7 +110,6 @@ $$
 ## Questions
 - In fig.1 各類型音訊是怎麼分出來的? (Loudness, Headroom, Average Level, Noise floor)
 - Live stream adjustment?
-- [Learning Matplotlib, understanding diff approaches!](https://zhuanlan.zhihu.com/p/93423829)
 
 ## Original Hackmd :
 https://hackmd.io/@jasonho610/HJa8jjVVu</center>
