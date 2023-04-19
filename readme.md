@@ -34,10 +34,9 @@ Loudness normalize the audio :
 ```
 $ ./BS1770 -n l <target> <wav>
 ```
-:::info
+
 <target> sub with your target loudness, should be negative double (in LKFS)
 <wav>    sub with the file name of your .wav
-:::
 
 To delete produced file :
 ```
