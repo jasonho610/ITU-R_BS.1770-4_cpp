@@ -3,6 +3,8 @@
 //  LKFS
 //
 //  Created by 何冠勳 on 2021/5/19.
+//  
+// Edited by Duck on 2025/8/18 - fixed a problem in AbsGating 
 //
 
 #ifndef LKFS_h
@@ -153,6 +155,8 @@ double integrated_loudness(Stereo_Wav &wav, double fs) {
     z_avg_left = throw_and_mean(Gamma_a, l, z_left);
     z_avg_right = throw_and_mean(Gamma_a, l, z_right);
     double Gamma_r = -0.691 + 10.0*log10(G[0]*z_avg_left+G[1]*z_avg_right) - 10.0;
+    //if relative threshold is under absolute, just return the abs gated result
+    if(Gamma_r<Gamma_a) return Gamma_r+10.0;
     
     // throw out anything below relative threshold:
     z_avg_left = throw_and_mean(Gamma_r, l, z_left);
@@ -190,7 +194,9 @@ double integrated_loudness(Mono_Wav &wav, double fs) {
     double z_avg = 0.0;
     z_avg = throw_and_mean(Gamma_a, l, z);
     double Gamma_r = -0.691 + 10.0*log10(G*z_avg) - 10.0;
-    
+    //if relative threshold is under absolute, just return the abs gated result
+    if(Gamma_r<Gamma_a) return Gamma_r+10.0;
+
     // throw out anything below relative threshold:
     z_avg = throw_and_mean(Gamma_r, l, z);
     double L_KG = -0.691 + 10.0*log10(G*z_avg);
